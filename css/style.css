@@ -1448,4 +1448,8 @@ label div.ui-slider {
 html body .ui-group-theme-b .ui-btn.ui-radio-on {
   background-color: #eee; }
 
+div.ui-panel-wrapper {
+	padding-top: 1.25em;
+}
+
 /*# sourceMappingURL=style.css.map */

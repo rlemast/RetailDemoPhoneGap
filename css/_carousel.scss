@@ -1,0 +1,56 @@
+#promotions {
+	border-bottom:1px solid #fff;
+	&.owl-theme .owl-controls {
+		margin-top: -22px;
+		height: 22px;
+		z-index: 2;
+		position: relative;
+		.owl-page span {
+			background:#fff;
+			width:6px;
+			height:6px;
+			opacity:1;
+			margin:3px 4px;
+		}
+		.owl-page.active span {
+			width:10px;
+			height:10px;
+			margin:1px 2px;
+		}
+	}
+	&.owl-carousel .owl-wrapper-outer {
+		z-index:1;
+	}
+	&.owl-carousel .owl-wrapper, &.owl-carousel .owl-item, .slide {
+		height:180px;
+	}
+
+	.slide {
+		background:$primary_b1 no-repeat center;
+		background-size: cover;
+	}
+
+	h2 {
+		padding:15px 0;
+		font-size:16px;
+		line-height:16px;
+		margin:0px;
+		font-weight:300;
+		color:#fff;
+	}
+	.divider {
+		color:#fff;
+		hr {
+			border-bottom: 1px solid #fff;
+		}
+	}
+	.cta {
+		color:$primary_p;
+		font-weight:bold;
+		font-size:60px;
+		text-shadow:0 1px 0 rgba(0,0,0,0.5);
+	}
+	.newYear {
+		background-image:url(../img/newYears.jpg);
+	}
+}

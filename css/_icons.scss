@@ -1,0 +1,32 @@
+.icon {
+	i {
+		display:inline-block;
+		width:50px;
+		height:50px;
+		background:url(../img/icons_100x100.png) no-repeat 0 0;
+		background-size:100%;
+		&.icon-computer {
+			background-position:0 0;
+		}
+		&.icon-deals {
+			background-position:0 -50px;
+		}
+		&.icon-cards {
+			background-position:0 -100px;
+		}
+		&.icon-location {
+			background-position:0 -150px;
+		}
+	}
+}
+
+
+.ui-square-icon:after,
+.ui-square {
+	border-radius:0;
+}
+
+
+@include generateIcons($color: "FFF", $nameSpace: "", $imgName: "white");
+@include generateIcons($color: "525252", $nameSpace: "ui-alt-icon", $imgName: "black");
+@include generateIcons($color: "ed1c80", $nameSpace: "ui-primary-icon", $imgName: "pink");

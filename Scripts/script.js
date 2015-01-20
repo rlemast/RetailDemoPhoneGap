@@ -310,10 +310,7 @@
 		            $("#cameraAccess").find('.js-submit').on('click', function (e) {
 		                self.permitted = true;
 		                $('#scanner').find('.camera').removeClass('disabled');
-		                setTimeout(function(){
-		                	$.mobile.navigate( "#productDetail" );
-		                }, 7000);
-		            });
+		            })
 		            $("#cameraAccess").popup("open");
 		            
 		        }
@@ -747,15 +744,7 @@
 
 
 
-
-
-
-
-
-
 	// Init Bind
-	//$(document).on('pageinit',app.init);
-
 	$(app.init);
 
 })(jQuery);

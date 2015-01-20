@@ -5,7 +5,7 @@
 	<title>jQuery Mobile: Theme Download</title>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="css/themes/ST-Demo-App.css" />
-	<!--link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" /-->
+	<!--link rel="stylesheet" href="/css/themes/jquery.mobile.icons.min.css" /-->
 	<link rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" href="css/owl/owl.carousel.css" />
 	<link rel="stylesheet" href="css/owl/owl.theme.css" />
@@ -20,8 +20,16 @@
 	<link rel="stylesheet" href="css/themes/jquery.mobile.structure-1.4.5.css" />
 	<script src="Scripts/vendor/jquery-1.11.2.js"></script>
 	<script>
+
+
+
+
 		$(document).bind("mobileinit", function(){
-	      	$.mobile.autoInitializePage = false;
+		  $.extend(  $.mobile , {
+		    defaultPageTransition: "none",
+		    autoInitializePage: false
+		  });
+	      	//$.mobile.autoInitializePage = false;
 	  	});
 	</script>
 	<script src="Scripts/vendor/jquery.mobile.router.js"></script>
@@ -32,8 +40,15 @@
 	<script src="Scripts/vendor/jRating.jquery.js"></script>
 	<script src="Scripts/vendor/mustache.min.js"></script>
 	<script src="Scripts/script.js"></script>
+    <!--script src="/Scripts/require.js" data-main="/Scripts/app/main"></script-->
 
 
+
+	<!-- Prod ->
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<!-- End: Prod -->
 </head>
 <body data-theme="a" class="ui-body-a">
 

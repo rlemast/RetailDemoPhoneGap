@@ -1448,8 +1448,12 @@ label div.ui-slider {
 html body .ui-group-theme-b .ui-btn.ui-radio-on {
   background-color: #eee; }
 
-div.ui-panel-wrapper {
-	padding-top: 1.25em;
-}
+[data-role="page"], #nav-panel {
+  padding-top: 1.25em !important; }
+
+.ui-panel-display-reveal {
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important; }
 
 /*# sourceMappingURL=style.css.map */

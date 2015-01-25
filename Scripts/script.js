@@ -316,10 +316,11 @@
 		            $("#cameraAccess").find('.js-submit').on('click', function (e) {
 		                self.permitted = true;
 		                $('#scanner').find('.camera').removeClass('disabled');
+		                
 		                setTimeout(function(){
--		                	$.mobile.navigate( "#productDetail" );
--		                }, 2000);
-		            })
+	                		$.mobile.navigate( "#productDetail" );
+	                	}, 2000);
+		            });
 		            $("#cameraAccess").popup("open");
 		            
 		        }

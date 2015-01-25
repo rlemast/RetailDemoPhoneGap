@@ -42,15 +42,7 @@
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js">
     </script>
 	<script src="Scripts/script.js"></script>
-    <!--script src="/Scripts/require.js" data-main="/Scripts/app/main"></script-->
 
-
-
-	<!-- Prod ->
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
-	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-	<!-- End: Prod -->
 </head>
 <body data-theme="a" class="ui-body-a">
 
@@ -338,10 +330,18 @@
 	<div data-role="content" class="ui-content" data-theme="a">
 		<h1 class="headerBar">Store Locator</h1>
 		<div data-role="controlgroup" data-type="horizontal" data-theme="b">
+		    
+		    <a href="#storeResults" class="ui-btn ui-btn-a">Use my location</a>
+		</div>
+		<br/>
+		- OR -
+		<br/>
+		<br/>
+		<div data-role="controlgroup" data-type="horizontal" data-theme="b">
 		    <input type="text" id="store-search" data-wrapper-class="controlgroup-textinput ui-btn" placeholder="Enter city or zip code">
 		    <a href="#storeResults" class="ui-btn ui-btn-a">Find Stores</a>
 		</div>
-
+		
 	</div>
 
 </div>

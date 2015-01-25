@@ -1,21 +1,22 @@
 .icon {
 	i {
 		display:inline-block;
-		width:50px;
-		height:50px;
+		width:40px;
+		height:35px;
 		background:url(../img/icons_100x100.png) no-repeat 0 0;
 		background-size:100%;
-		&.icon-computer {
+		&.icon-phone {
 			background-position:0 0;
 		}
 		&.icon-deals {
-			background-position:0 -50px;
+			background-position:0 -40px;
 		}
 		&.icon-cards {
-			background-position:0 -100px;
+			background-position:0 -80px;
 		}
 		&.icon-location {
-			background-position:0 -150px;
+			background-position:0 -105px;
+			width:35px;
 		}
 	}
 }
@@ -26,7 +27,31 @@
 	border-radius:0;
 }
 
+.ui-header {
+	.ui-btn-icon-left:after, 
+	.ui-btn-icon-right:after, 
+	.ui-btn-icon-top:after, 
+	.ui-btn-icon-bottom:after, 
+	.ui-btn-icon-notext:after {
+		background-size:100%;
+		width:24px;
+		height:24px;
+	}
+	.ui-btn-icon-notext:after, .ui-btn-icon-top:after, .ui-btn-icon-bottom:after {
+		margin-left:-12px;
+	}
+	.ui-btn-icon-notext:after, .ui-btn-icon-left:after, .ui-btn-icon-right:after {
+		margin-top: -12px;
+	}
+	.ui-icon-cart:after {
+		width: 30px !important;
+		margin-left: -14px !important;
+		height: 30px !important;
+		margin-top: -15px !important;
+	}
+}
 
 @include generateIcons($color: "FFF", $nameSpace: "", $imgName: "white");
 @include generateIcons($color: "525252", $nameSpace: "ui-alt-icon", $imgName: "black");
 @include generateIcons($color: "ed1c80", $nameSpace: "ui-primary-icon", $imgName: "pink");
+

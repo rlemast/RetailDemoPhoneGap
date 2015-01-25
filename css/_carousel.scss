@@ -1,8 +1,8 @@
 #promotions {
 	border-bottom:1px solid #fff;
 	&.owl-theme .owl-controls {
-		margin-top: -22px;
-		height: 22px;
+		margin-top: -19px;
+		height: 18px;
 		z-index: 2;
 		position: relative;
 		.owl-page span {
@@ -22,12 +22,18 @@
 		z-index:1;
 	}
 	&.owl-carousel .owl-wrapper, &.owl-carousel .owl-item, .slide {
-		height:180px;
+	//	height:180px;
+		height:auto;
 	}
 
 	.slide {
 		background:$primary_b1 no-repeat center;
 		background-size: cover;
+		text-align:center;
+		img {
+		//	height:180px;
+			width:100%;
+		}
 	}
 
 	h2 {

@@ -33,7 +33,7 @@
 
 	var checkoutShippingItemTmpl = '<div class="js-item" data-sku="{{sku}}" data-model="{{model}}" data-price="{{price}}" data-title="{{title}}" data-image="{{image}}" data-qty="{{qty}}"><div class="headWButton"><a href="#" class="small js-remove">Remove</a><h2>{{title}}</h2></div><p><strong>Model:</strong> {{model}} <br /><strong>SKU:</strong> {{sku}}</p><div class="headWButton"><a href="#" class="small">Ship Instead</a><h2 class="light">Pickup In Store</h2><hr /></div><p><strong>Margate FL</strong><br />3300 Nw 62nd Ave<br />Margate, FL 33063</p><a href="#" class="small">Change Store</a><fieldset data-role="controlgroup" data-theme="b"><input type="radio" name="radio-{{sku}}" id="radio-{{sku}}-1" value="{{sku}}-1" checked="checked"><label for="radio-{{sku}}-1">I will pick up this item myself.</label><input type="radio" name="radio-{{sku}}" id="radio-{{sku}}-2" value="{{sku}}-2"><label for="radio-{{sku}}-2">Someone else will pick up this item.</label></fieldset><div class="headWButton"><h2 class="light">Gift Options</h2><hr /></div><label for="isGift">Send a gift message<select name="isGift" id="isGift" data-role="slider" data-mini="true"><option value="off" selected="">No</option><option value="on">Yes</option></select></label><hr /></div>';
 
-
+	var cartItemGiftCard = '<div class="cartItem" data-sku="{{sku}}" data-model="{{model}}" data-price="{{price}}" data-title="{{title}}" data-image="{{image}}" data-qty="{{qty}}"><div class="bg-gray ui-grid-a edge"><div class="ui-block-a js-id"><p><strong>{{id}}</strong></p></div><div class="ui-block-b"><p><a href="#productDetail" class="js-productName">{{title}}</a></p><p><strong>Model:</strong> <span class="js-model">{{model}}</span><br /><strong>SKU:</strong> <span class="js-sku">{{sku}}</span></p><p>{{offer}}</p></div></div><div class="ui-grid-a cartCSBreakPoint"><div class="ui-block-a"><p><img src="{{image}}" class="js-image"></p></div><div class="ui-block-b"><p class="price js-price">${{price}}</p><p><a href="#" class="js-remove">Remove Item</a></p></div></div></div>';
 
 
 
@@ -192,7 +192,13 @@
 						        	this.updateTotals();
 						        },
 						        renderItem: function (item) {
-						        	var html = Mustache.render(cartItemTmpl, item);
+						        	var html;
+						        	if (item.sku === "mGiftcard") {
+						        		html = Mustache.render(cartItemGiftCard, item);
+						        	} else {
+						        		html = Mustache.render(cartItemTmpl, item);
+						        	}
+
 						    			//console.log('render');
 						        	//console.log(html);
 						        	return html;
@@ -434,12 +440,108 @@
 
 
 
+	// Deps: *Super
+	var storeDetail = (function () {
+		    function StoreDetail() { }
+
+		    $.extend(true, StoreDetail.prototype, Super.prototype, {
+		    	markers: [],
+		    	options: {
+		    		center: { lat: 26.7120925, lng: -80.0563893},
+					zoom: 15,
+					//panControl: false,
+					//zoomControl: false,
+					mapTypeControl: false,
+					scaleControl: false,
+					streetViewControl: false,
+					overviewMapControl: false//,
+					//draggable: false,
+					//scrollwheel: false,
+					//disableDoubleClickZoom: true
+		    	},
+		        pagecreate: function () {
+					//$("#promotions").owlCarousel();
+			        this.map = new google.maps.Map(document.getElementById('locationMap'),
+			            this.options);
+			        this.addMarker();
+		        },
+		        pagebeforeshow: function () {
+		        },
+		        addMarker: function () {
+					var marker = new google.maps.Marker({
+					    position: new google.maps.LatLng(26.7120925,-80.0563893),
+					    map: this.map,
+					    title:"StrongThumb, LLC"
+					});
+					this.markers.push(marker);
+		        }
+		    });
+
+		    return new StoreDetail();
+		})();
 
 
 
 
+	// Deps: *Super
+	var dealDetail = (function () {
+		    function Deal() { }
+
+		    $.extend(true, Deal.prototype, Super.prototype, {
+		        pagecreate: function () {
+		        	$('#dealDetail').find('.js-addToCart').on('click', function () {
+						var data = $(this).data();
+						cartModule.addToCart(data);
+					});
+		        }
+		    });
+
+		    return new Deal();
+		})();
 
 
+	var giftCard = (function () {
+		    function GiftCard() { }
+
+		    $.extend(true, GiftCard.prototype, Super.prototype, {
+		        pagecreate: function () {
+		        	var self = this;
+
+		        	$('#giftCardDenomination').on('change', function () {
+		        		self.setData("price", $(this).val());
+		        	});
+		        	$('#mobileNumber').on('change', function () {
+		        		self.setData("model", $(this).val());
+		        	});
+		        	$('#personalNote').on('change', function () {
+		        		self.setData("offer", $(this).val());
+		        	});
+		        	$('#giftCard').find('.js-addToCart').on('click', function (e) {
+						var data = $(this).data();
+
+						if (data.model == "" || $(this).hasClass('disabled') || $(this).attr('disabled')) {
+							e.preventDefault();
+							return false;
+						}
+						cartModule.addToCart(data);
+					});
+		        },
+		        setData: function (type, value) {
+		        	var $target = $('#giftCard').find('.js-addToCart');
+
+		        	$target.data(type, value);
+
+		        	console.log($target.data(), type, value);
+		        	if ($target.data().model != "") {
+		        		$target.removeAttr('disabled').removeClass('disabled');
+		        	} else {
+		        		$target.attr('disabled', 'disabled').addClass('disabled');
+		        	}
+		        }
+		    });
+
+		    return new GiftCard();
+		})();
 
 
 	/*==============================
@@ -459,7 +561,10 @@
 							"#addToCart" : addToCart,
 							"#cart" : cartController,
 							"#checkoutShipping" : checkoutShipping,
-							"#checkoutPayment" : checkoutPayment
+							"#checkoutPayment" : checkoutPayment,
+							"#storeDetail" : storeDetail,
+							"#dealDetail" : dealDetail,
+							"#giftCard" : giftCard
 						},
 						init: function () {
 							var _routes;
